@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/twitch/github/configs/Conky\ wifi/conkyStart.sh
+X-GNOME-Autostart-enabled=true
+NoDisplay=false
+Hidden=false
+Name[en_ZA]=Conky
+Comment[en_ZA]=
+X-GNOME-Autostart-Delay=5
