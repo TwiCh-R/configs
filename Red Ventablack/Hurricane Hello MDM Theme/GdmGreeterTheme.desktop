@@ -1,0 +1,7 @@
+[GdmGreeterTheme]
+Greeter=Hurricane.xml
+Name=Hurricane-Hello
+Description=GDM Theme for Hurricane Warning GTK Theme.
+Author=Zack
+Copyright=(c) 2009 Zack Tew
+Screenshot=screenshot.png
