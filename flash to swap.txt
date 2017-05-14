@@ -1,0 +1,39 @@
+This is a quick and easy tutorial on how to create a flash drive (or a partition thereof) into a portable swap space for linux OS.
+It has been tested by others on Mint and Ubuntu flavours and is being done by me with the Parrot Sec OS.
+
+Step 1:
+	Plug the flash drive into the computer.
+
+Step 2:
+	Open the partition manager up (gparted in my case). 
+	A sample line depending on your drive number is:
+		sudo gparted /dev/sdb
+
+Step 3:
+	Partition and/or format the flash drive here before continuing. If a partition is going to be used then you have to specify the partition's filesystem type
+	to linux swap.
+Step 4:
+	Type 'lsblk' in to determine if everything worked.
+Step 5:
+	Type the following into the terminal and replace /dev/sdb1 with the partition of your intended swap drive.
+	
+	Create the swap partition on the usb drive's partition.
+	sudo mkswap /dev/sdb1
+Step 6:
+	Activate the swap drive.
+	sudo swapon -p 32767 /dev/sdb1
+Step 7:
+	verify that it worked.
+	cat /proc/swaps
+Step 8:
+	Unmounting the swap drive.
+	sudo swapoff /dev/sdb1
+
+EXTRA:
+If you want the drive to be permanent and to auto mount follow these steps.
+Find the UUID of the drive.
+Step 9:
+	ls -l /dev/disk/by-uuid/
+Step 10:
+	Add the following to the /etc/fstab to automount the drive as swap.
+	UUID=The_UUID_of_your_drive	none	swap	sw,pri=32767	0	0
