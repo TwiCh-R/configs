@@ -1,0 +1,75 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 2
+
+double_buffer yes
+no_buffers yes
+
+format_human_readable
+
+background yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Droid Sans:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type normal
+own_window_argb_visual yes
+own_window_argb_value 150
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment bottom_right
+gap_y 5
+gap_x 5
+border_inner_margin 8
+
+minimum_size 786 5
+maximum_width 220
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades no
+default_shade_color c0c0c0
+default_color FFFFFF
+
+TEXT
+###############
+# - NETWORK - #
+###############
+
+${if_existing /proc/net/route enp1s0f1}
+
+${font sans-serif:bold:size=10}Ethernet ${hr 2}
+
+${font Droid Sans:normal:size=10}IP address: $alignr ${addr enp1s0f1}
+#ESSID: $alignr ${wireless_essid enp1s0f1}
+#Connection quality: $alignr ${wireless_link_qual_perc enp1s0f1}%
+${downspeedgraph enp1s0f1 99cc33 006600}
+DLS: ${downspeed enp1s0f1} $alignr total: ${totaldown enp1s0f1}
+${upspeedgraph enp1s0f1  ffcc00 ff0000}
+ULS: ${upspeed enp1s0f1} $alignr total: ${totalup enp1s0f1}
+${else}${if_existing /proc/net/route wlp2s0}
+${font Droid Sans:normal:size=10}WIFI ${hr 2}
+${font Droid Sans:normal:size=10}IP address: $alignr ${addr wlp2s0}
+ESSID: $alignr ${wireless_essid wlp2s0}
+Connection quality: $alignr ${wireless_link_qual_perc wlp2s0}%
+${downspeedgraph wlp2s0 99cc33 006600}
+DLS: ${downspeed wlp2s0} $alignr total: ${totaldown wlp2s0}
+${upspeedgraph wlp2s0  ffcc00 ff0000}
+ULS: ${upspeed wlp2s0} $alignr total: ${totalup wlp2s0}
+${endif}${endif}

@@ -1,0 +1,85 @@
+######################
+# - Conky settings - #
+######################
+update_interval 1
+total_run_times 0
+net_avg_samples 1
+cpu_avg_samples 2
+
+double_buffer yes
+no_buffers yes
+
+format_human_readable
+
+background yes
+
+#####################
+# - Text settings - #
+#####################
+use_xft yes
+xftfont Droid Sans:size=8
+override_utf8_locale yes
+text_buffer_size 2048
+
+#############################
+# - Window specifications - #
+#############################
+own_window_class Conky
+own_window yes
+own_window_type normal
+own_window_argb_visual yes
+own_window_argb_value 150
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+
+alignment top_right
+gap_y 5
+gap_x 5
+border_inner_margin 8
+
+minimum_size 786 5
+maximum_width 220
+
+#########################
+# - Graphics settings - #
+#########################
+draw_shades yes
+default_shade_color c0c0c0
+default_color FFFFFF
+
+TEXT
+#############
+# - CLOCK - #
+#############
+${voffset 2}${font Droid Sans:style=Bold:size=10}DATE $hr 2${font}
+${font Droid Sans:size=50}${alignc}${time %H:%M}${font}
+${alignc}${time %d %B %Y}
+
+##############
+# - SYSTEM - #
+##############
+${font Droid Sans:style=Bold:size=10}SYSTEM $hr 2${font}
+${voffset 8}${font OpenLogos:size=16}RC${font}${goto 40}${voffset -15}${font Droid Sans:style=Bold:size=10}    Kernel:  ${alignr}${kernel}
+${goto 40}${font Droid Sans:style=Bold:size=10}    Uptime: ${alignr}${uptime}
+${font Droid Sans:style=Bold:size=10}${voffset 2}UPDATES $hr 2
+${goto 40}Updates: ${alignr}${font Droid Sans:style=Bold:size=10}${execi 10800 pacman -Qu | wc -l} ${font Droid Sans:style=Bold:size=10}Packages
+
+${font Droid Sans:style=Bold:size=10}Battery $hr 
+
+${font Droid Sans:style=Bold:size=10}Power Level: ${offset 20}${battery_percent BAT1}% ${color lightgray}${battery_bar BAT1}$color
+${font Droid Sans:style=Bold:size=10}Time Remaining:$alignr${battery_time BAT1}
+$hr 2
+${font Droid Sans:style=Bold:size=11}CPU : ${cpu cpu0}% ${cpubar cpu0}
+
+
+${font Droid Sans:style=Bold:size=8} ${voffset -23}${goto 40}Core 1: ${font Droid Sans:style=Bold:size=8}${cpu cpu1}%${font} ${alignr}${cpubar cpu1 7,70 EEEEEE}
+${voffset 1}${goto 40}Core 2: ${font Droid Sans:style=Bold:size=8}${cpu cpu2}%${font} ${alignr}${cpubar cpu2 7,70 EEEEEE}
+${voffset 1}${goto 40}Core 3: ${font Droid Sans:style=Bold:size=8}${cpu cpu3}%${font} ${alignr}${cpubar cpu3 7,70 EEEEEE}
+${voffset 1}${goto 40}Core 4: ${font Droid Sans:style=Bold:size=8}${cpu cpu4}%${font} ${alignr}${cpubar cpu4 7,70 EEEEEE}
+
+${font Droid Sans:bold:size=10}MEMORY ${hr 2}
+
+${voffset 4}${goto 40}Free: ${font Droid Sans:style=Bold:size=9}${memeasyfree}${font Droid Sans:style=Bold:size=9} Used: ${mem}
+
+${font Droid Sans:style=Bold:size=10}RAM $alignc $mem / $memmax $alignr $memperc%
+$membar
