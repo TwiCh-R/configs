@@ -1,0 +1,17 @@
+Step 1:
+	Create the script file and copy it to the /usr/bin folder.
+Step 2:
+	sudo chmod 755 /usr/bin/"my-script"
+Step 3:
+	nano /etc/systemd/system/"my-script".service
+Step 4:
+	[Unit]
+	Description=My script
+
+	[Service]
+	ExecStart=/usr/bin/my-script
+
+	[Install]
+	WantedBy=multi-user.target 
+Step 5:
+	sudo systemctl enable "my-script".service
